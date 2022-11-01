@@ -3,9 +3,15 @@ import Header from "./Header";
 import './App.css';
 
 class App extends Component {
-  
+  constructor() {
+    super();
+    this.state = {
+      subscribersListToShow: []
+    }
+  }
+
   render() {
-    let subscribers = [
+    /* let subscribers = [
       {
         id:1, 
         name: "Nik",
@@ -16,7 +22,10 @@ class App extends Component {
         name: "Tayal",
         phone: 8800
      }
-   ];
+   ];*/
+
+
+
     return (
         <div>
           <Header heading="Phone Directory" />
@@ -28,12 +37,12 @@ class App extends Component {
             <span className="grid-item phone-heading">Phone</span>
           </div>
 {
-          subscribers.map(sub => {
+          this.state.subscribersListToShow.map(sub => {
       return <div key={sub.id} className="grid-container">
         <span className="grid-item">{sub.name}</span>
       	<span className="grid-item">{sub.phone}</span>
         <span className="grid-item action-btn-container">
-                  <button className="custom-btn delete-btn">Delete</button>
+                  <button className="custom-btn delete-btn" onclick={this.deleteHandler}>Delete</button>
                 </span>
       </div>
    })
